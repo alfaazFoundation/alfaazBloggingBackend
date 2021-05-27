@@ -1,11 +1,10 @@
 package in.alfaaz.foundation.blog.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ALF_USER")
@@ -13,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserEntity {
 
     @Id
@@ -31,4 +31,9 @@ public class UserEntity {
 
     @ManyToOne
     private RoleEntity role;
+
+    @OneToMany(fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL, orphanRemoval = true,
+    mappedBy = "user")
+    private List<BlogEntity> blogEntities = new ArrayList<>();
 }
