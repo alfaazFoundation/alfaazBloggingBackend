@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages ={"in.alfaaz.foundation.blog"})
 public class BlogApplication {
 
     public static void main(String[] args) {

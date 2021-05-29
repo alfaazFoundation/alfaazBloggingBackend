@@ -26,9 +26,6 @@ public class UserEntity {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "USERNAME")
-    private String username;
-
     @Column(name = "PASSWORD")
     private String password;
 
