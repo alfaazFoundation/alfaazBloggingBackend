@@ -1,11 +1,9 @@
 package in.alfaaz.foundation.blog.controller;
 
 
-import in.alfaaz.foundation.blog.dto.RoleDto;
 import in.alfaaz.foundation.blog.entity.RoleEntity;
 import in.alfaaz.foundation.blog.services.RoleDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/api")
 public class RoleController {
 
     @Autowired

@@ -6,15 +6,13 @@ import in.alfaaz.foundation.blog.entity.UserEntity;
 import in.alfaaz.foundation.blog.services.UserDataService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(value = "/api")
 public class AdminController {
 
     @Autowired
@@ -25,7 +23,7 @@ public class AdminController {
     @GetMapping(value = "/admins",produces = "application/json")
     public List<UserDto> getAdmins(){
         return userDataService.getAdmins().stream()
-                .map(this::convertToDto)
+                .map(userEntity -> modelMapper.map(userEntity,UserDto.class))
                 .collect(Collectors.toList());
     }
 

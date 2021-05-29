@@ -1,7 +1,6 @@
 package in.alfaaz.foundation.blog.controller;
 
 import in.alfaaz.foundation.blog.dto.BlogDto;
-import in.alfaaz.foundation.blog.entity.BlogEntity;
 import in.alfaaz.foundation.blog.services.BlogDataService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(value = "/api")
 public class BlogController {
 
     @Autowired

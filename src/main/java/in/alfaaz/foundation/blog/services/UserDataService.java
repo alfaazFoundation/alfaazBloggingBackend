@@ -18,6 +18,7 @@ public class UserDataService {
     private RoleRepository roleRepository;
 
     public List<UserEntity> getAdmins(){
+
         return userRepository.getAdmins();
     }
 

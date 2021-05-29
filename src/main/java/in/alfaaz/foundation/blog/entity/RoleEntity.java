@@ -24,7 +24,5 @@ public class RoleEntity {
     @Column(name = "ROLE_NAME")
     private String roleName;
 
-    @OneToMany(mappedBy = "role",
-    cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<UserEntity> userEntityList = new ArrayList<>();
+
 }
