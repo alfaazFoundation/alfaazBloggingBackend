@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-    @Query(value = "select users from ALF_USER users,ALF_ROLE roles where users.id=roles.id and roles.ROLE_NAME = 'ADMIN' ", nativeQuery = true)
+    @Query(value = "select * from ALF_USER users,ALF_ROLE roles where users.id=roles.id and roles.ROLE_NAME = 'ADMIN' ", nativeQuery = true)
     public List<UserEntity> getAdmins();
 }

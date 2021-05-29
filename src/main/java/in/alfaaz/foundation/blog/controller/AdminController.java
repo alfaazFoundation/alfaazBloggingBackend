@@ -19,12 +19,12 @@ public class AdminController {
     @Autowired
     private UserDataService userDataService;
 
-    @GetMapping(name = "/admins",produces = "application/json")
+    @GetMapping(value = "/admins",produces = "application/json")
     public List<UserEntity> getAdmins(){
         return userDataService.getAdmins();
     }
 
-    @PostMapping(name = "/admins")
+    @PostMapping(value = "/admins")
     public Integer addAdmin(UserEntity admin){
         return 0;
 //        return userDataService.save(admin).getId();
