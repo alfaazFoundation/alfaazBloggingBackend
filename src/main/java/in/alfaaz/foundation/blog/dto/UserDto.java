@@ -1,8 +1,6 @@
 package in.alfaaz.foundation.blog.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import in.alfaaz.foundation.blog.entity.RoleEntity;
 import lombok.*;
 
 @NoArgsConstructor

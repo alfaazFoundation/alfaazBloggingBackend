@@ -19,6 +19,4 @@ public class BlogDto {
     private Date publishedOn;
 
     private String publishedBy;
-
-    private String category;
 }

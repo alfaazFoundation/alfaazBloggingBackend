@@ -23,8 +23,8 @@ public class CategoryEntity {
     @Column(name = "CATEGORY_NAME")
     private String categoryName;
 
-    @OneToMany(fetch = FetchType.LAZY,
+/*    @OneToMany(fetch = FetchType.LAZY,
     cascade = CascadeType.ALL, orphanRemoval = true,
     mappedBy = "category")
-    List<BlogEntity> blogEntities = new ArrayList<>();
+    List<BlogEntity> blogEntities = new ArrayList<>();*/
 }

@@ -32,8 +32,5 @@ public class BlogEntity {
     private Date publishedOn;
 
     @ManyToOne
-    private CategoryEntity category;
-
-    @ManyToOne
     private UserEntity user;
 }
