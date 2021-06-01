@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Query(value = "select * from alf_user users,alf_role roles where roles.ROLE_NAME = 'ADMIN' ", nativeQuery = true)
     public List<UserEntity> getAdmins();
+
+    public UserEntity getByEmail(String email);
 }

@@ -2,6 +2,7 @@ package in.alfaaz.foundation.blog.services;
 
 import in.alfaaz.foundation.blog.dto.UserDto;
 import in.alfaaz.foundation.blog.entity.UserEntity;
+import in.alfaaz.foundation.blog.enums.Provider;
 import in.alfaaz.foundation.blog.enums.UserRole;
 import in.alfaaz.foundation.blog.repository.RoleRepository;
 import in.alfaaz.foundation.blog.repository.UserRepository;
@@ -32,5 +33,19 @@ public class UserDataService {
         admin.setRole(roleRepository.findByRoleName(UserRole.ADMIN.toString()));
 
         return userRepository.save(admin).getId();
+    }
+
+    public void processOAuthPostLogin(String username) {
+        UserEntity existUser = userRepository.getByEmail(username);
+
+        if (existUser == null) {
+            UserEntity newUser = new UserEntity();
+            newUser.setEmail(username);
+            newUser.setProvider(Provider.GOOGLE);
+//            newUser.setEnabled(true);
+
+            userRepository.save(newUser);
+        }
+
     }
 }

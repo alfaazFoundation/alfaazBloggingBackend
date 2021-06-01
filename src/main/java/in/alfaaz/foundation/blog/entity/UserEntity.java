@@ -1,5 +1,6 @@
 package in.alfaaz.foundation.blog.entity;
 
+import in.alfaaz.foundation.blog.enums.Provider;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,9 @@ public class UserEntity {
 
     @Column(name = "EMAIL")
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
     @ManyToOne
     private RoleEntity role;
