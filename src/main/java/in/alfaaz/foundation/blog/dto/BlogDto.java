@@ -19,4 +19,8 @@ public class BlogDto {
     private Date publishedOn;
 
     private String publishedBy;
+
+    private boolean isPublished;
+
+    private boolean isDraft;
 }
