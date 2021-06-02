@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "ALF_USER")
@@ -18,7 +19,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
-    private Long id;
+    private UUID id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -29,7 +30,7 @@ public class UserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL",unique = true)
     private String email;
 
     @ManyToOne

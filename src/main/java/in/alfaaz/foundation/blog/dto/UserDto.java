@@ -3,6 +3,8 @@ package in.alfaaz.foundation.blog.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -10,7 +12,7 @@ import lombok.*;
 @ToString
 public class UserDto {
     @JsonIgnore
-    private Long id;
+    private UUID id;
 
     private String firstName;
 
