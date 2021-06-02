@@ -31,6 +31,12 @@ public class BlogEntity {
     @Column(name = "PUBLISHED_ON")
     private Date publishedOn;
 
+    @Column(name = "IS_PUBLISHED")
+    private boolean isPublished;
+
+    @Column(name = "IS_DRAFT")
+    private boolean isDraft;
+
     @ManyToOne
     private UserEntity user;
 }
