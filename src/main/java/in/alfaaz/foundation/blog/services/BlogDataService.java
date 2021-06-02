@@ -2,12 +2,15 @@ package in.alfaaz.foundation.blog.services;
 
 import in.alfaaz.foundation.blog.dto.BlogDto;
 import in.alfaaz.foundation.blog.entity.BlogEntity;
+import in.alfaaz.foundation.blog.entity.UserEntity;
 import in.alfaaz.foundation.blog.repository.BlogRepository;
 import in.alfaaz.foundation.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogDataService {
@@ -29,5 +32,14 @@ public class BlogDataService {
         blogEntity.setPublishedBy(blogDto.getPublishedBy());
 
         return blogRepository.save(blogEntity).getId();
+    }
+
+    public List<BlogEntity> findBlogByUser(Long id){
+        Optional<UserEntity> userEntity = userRepository.findById(id);
+        List<BlogEntity> blogEntities = new ArrayList<>();
+        if(userEntity.isPresent()){
+            blogEntities = blogRepository.findAllByUser(userEntity.get());
+        }
+        return blogEntities;
     }
 }

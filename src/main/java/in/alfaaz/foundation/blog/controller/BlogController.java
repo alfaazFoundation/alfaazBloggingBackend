@@ -4,12 +4,10 @@ import in.alfaaz.foundation.blog.dto.BlogDto;
 import in.alfaaz.foundation.blog.services.BlogDataService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -22,7 +20,13 @@ public class BlogController {
     ModelMapper modelMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/blog")
-    public List<BlogDto> getAllBlogs(){
+    public List<BlogDto> getAllBlogs(@RequestParam(required = false)Long id){
+        if(Objects.nonNull(id)){
+            return blogDataService.findBlogByUser(id)
+                    .stream()
+                    .map(blogEntity -> modelMapper.map(blogEntity, BlogDto.class))
+                    .collect(Collectors.toList());
+        }
         return blogDataService.findAll()
                 .stream()
                 .map(blogEntity-> modelMapper.map(blogEntity,BlogDto.class))
