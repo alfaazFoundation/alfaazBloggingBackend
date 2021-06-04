@@ -1,5 +1,6 @@
 package in.alfaaz.foundation.blog.dto;
 
+import in.alfaaz.foundation.blog.enums.BlogStatus;
 import lombok.*;
 
 import java.sql.Date;
@@ -20,7 +21,7 @@ public class BlogDto {
 
     private String publishedBy;
 
-    private boolean isPublished;
+    private BlogStatus blogStatus;
 
-    private boolean isDraft;
+    private Date lastUpdated;
 }
