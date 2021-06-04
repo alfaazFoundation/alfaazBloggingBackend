@@ -59,4 +59,14 @@ public class UserDataService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
     }
+
+    public UUID register(UserDto userDto){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDto.getEmail());
+        userEntity.setFirstName(userDto.getFirstName());
+        userEntity.setLastName(userDto.getLastName());
+        userEntity.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        userEntity.setRole(roleRepository.findByRoleName(UserRole.USER.toString()));
+        return userRepository.save(userEntity).getId();
+    }
 }

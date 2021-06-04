@@ -81,6 +81,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter implements WebMvcCon
                 // Our public endpoints
                 .antMatchers("/api/public/**").permitAll()
                 .antMatchers("/api/blog/**").permitAll()
+                .antMatchers("/api/user/register").permitAll()
                 // Our private endpoints
                 .anyRequest().authenticated();
 
