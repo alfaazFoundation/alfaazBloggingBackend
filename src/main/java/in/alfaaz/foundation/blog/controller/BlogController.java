@@ -36,7 +36,7 @@ public class BlogController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/blog/user")
-    public List<BlogDto> getAllBlogsByUer(){
+    public List<BlogDto> getAllBlogsByUser(){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             return blogDataService.findBlogByUser(userDetails.getUsername())
                     .stream()

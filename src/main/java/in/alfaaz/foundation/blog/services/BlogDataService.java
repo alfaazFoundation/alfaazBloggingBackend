@@ -3,6 +3,7 @@ package in.alfaaz.foundation.blog.services;
 import in.alfaaz.foundation.blog.dto.BlogDto;
 import in.alfaaz.foundation.blog.entity.BlogEntity;
 import in.alfaaz.foundation.blog.entity.UserEntity;
+import in.alfaaz.foundation.blog.enums.BlogStatus;
 import in.alfaaz.foundation.blog.repository.BlogRepository;
 import in.alfaaz.foundation.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class BlogDataService {
         blogEntity.setContent(blogDto.getContent());
         String publishedBy = userEntity.getFirstName() + " " + userEntity.getLastName();
         blogEntity.setPublishedBy(publishedBy);
+        blogEntity.setBlogStatus(blogDto.getBlogStatus());
         blogEntity.setUser(userEntity);
 
         return blogRepository.save(blogEntity).getId();

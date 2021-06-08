@@ -36,6 +36,7 @@ public class BlogEntity {
     private Date publishedOn;
 
     @Column(name = "BLOG_STATUS")
+    @Enumerated(EnumType.STRING)
     private BlogStatus blogStatus;
 
     @Column(name = "LAST_UPDATED")
