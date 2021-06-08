@@ -10,6 +10,8 @@ import in.alfaaz.foundation.blog.services.UserDataService;
 import in.alfaaz.foundation.blog.utils.JwtTokenUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -68,6 +70,11 @@ public class AdminController {
         response.setStatus("OK");
         response.setCode(200);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping(value = "/admin")
+    public UserDto getAdminByToken(@RequestHeader (name= HttpHeaders.AUTHORIZATION) String tokenHeader){
+       return modelMapper.map(userDataService.getAdminByUsername(jwtTokenUtil.getUsernameFromHeader(tokenHeader)),UserDto.class);
     }
 
     @PostMapping(value = "/admins/settings")

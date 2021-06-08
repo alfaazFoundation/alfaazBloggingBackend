@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @ToString
 public class UserDto {
-    @JsonIgnore
+
     private UUID id;
 
     private String firstName;
@@ -20,6 +20,15 @@ public class UserDto {
 
     private String email;
 
+    private String facebook;
+
+    private String instagram;
+
+    private String youtube;
+
+    private String twitter;
+
+    @JsonIgnore
     private String password;
 
     private String role;

@@ -33,6 +33,11 @@ public class UserDataService implements UserDetailsService {
         return userRepository.getAdmins();
     }
 
+    public UserEntity getAdminByUsername(String username){
+
+        return userRepository.findByEmail(username);
+    }
+
     public UUID saveAdmin(UserRegisterRequest adminRegisterRequest){
         UserEntity admin = new UserEntity();
         admin.setFirstName(adminRegisterRequest.getFirstName());
