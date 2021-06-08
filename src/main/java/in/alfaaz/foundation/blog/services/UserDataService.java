@@ -1,5 +1,6 @@
 package in.alfaaz.foundation.blog.services;
 
+import in.alfaaz.foundation.blog.dto.UserDto;
 import in.alfaaz.foundation.blog.entity.UserEntity;
 import in.alfaaz.foundation.blog.enums.UserRole;
 import in.alfaaz.foundation.blog.models.UserRegisterRequest;
@@ -72,7 +73,7 @@ public class UserDataService implements UserDetailsService {
         }
     }
 
-    public String updateAdminSettings(UserSettingsDto userSettingsDto){
+    public String updateAdminSettings(UserSettingsDto userSettingsDto) {
         userRepository.updateAdminSettings(
                 userSettingsDto.getUsername(),
                 userSettingsDto.getFirstName(),
@@ -83,5 +84,16 @@ public class UserDataService implements UserDetailsService {
                 userSettingsDto.getTwitter()
         );
         return "";
+    }
+
+    public UUID register(UserDto userDto){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setEmail(userDto.getEmail());
+        userEntity.setFirstName(userDto.getFirstName());
+        userEntity.setLastName(userDto.getLastName());
+        userEntity.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        userEntity.setRole(roleRepository.findByRoleName(UserRole.USER.toString()));
+        return userRepository.save(userEntity).getId();
+
     }
 }

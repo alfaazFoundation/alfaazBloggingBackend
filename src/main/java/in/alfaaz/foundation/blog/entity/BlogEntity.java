@@ -1,6 +1,9 @@
 package in.alfaaz.foundation.blog.entity;
 
+import in.alfaaz.foundation.blog.enums.BlogStatus;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,13 +32,15 @@ public class BlogEntity {
     private String publishedBy;
 
     @Column(name = "PUBLISHED_ON")
+    @CreationTimestamp
     private Date publishedOn;
 
-    @Column(name = "IS_PUBLISHED")
-    private boolean isPublished;
+    @Column(name = "BLOG_STATUS")
+    private BlogStatus blogStatus;
 
-    @Column(name = "IS_DRAFT")
-    private boolean isDraft;
+    @Column(name = "LAST_UPDATED")
+    @UpdateTimestamp
+    private Date lastUpdated;
 
     @ManyToOne
     private UserEntity user;

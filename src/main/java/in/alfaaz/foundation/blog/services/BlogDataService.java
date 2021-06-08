@@ -34,12 +34,9 @@ public class BlogDataService {
         return blogRepository.save(blogEntity).getId();
     }
 
-    public List<BlogEntity> findBlogByUser(Long id){
-        Optional<UserEntity> userEntity = userRepository.findById(id);
-        List<BlogEntity> blogEntities = new ArrayList<>();
-        if(userEntity.isPresent()){
-            blogEntities = blogRepository.findAllByUser(userEntity.get());
-        }
-        return blogEntities;
+    public List<BlogEntity> findBlogByUser(String username){
+        UserEntity userEntity = userRepository.findByEmail(username);
+        return blogRepository.findAllByUser(userEntity);
+
     }
 }
