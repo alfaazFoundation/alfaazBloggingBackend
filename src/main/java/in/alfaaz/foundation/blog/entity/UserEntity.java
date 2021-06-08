@@ -30,6 +30,18 @@ public class UserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
+    @Column(name = "FACEBOOK")
+    private String facebook;
+
+    @Column(name = "INSTAGRAM")
+    private String instagram;
+
+    @Column(name = "YOUTUBE")
+    private String youtube;
+
+    @Column(name = "TWITTER")
+    private String twitter;
+
     @Column(name = "EMAIL",unique = true)
     private String email;
 

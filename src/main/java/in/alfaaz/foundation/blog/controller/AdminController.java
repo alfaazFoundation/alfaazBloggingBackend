@@ -2,9 +2,10 @@ package in.alfaaz.foundation.blog.controller;
 
 
 import in.alfaaz.foundation.blog.dto.UserDto;
-import in.alfaaz.foundation.blog.entity.UserEntity;
 import in.alfaaz.foundation.blog.models.UserLoginRequest;
 import in.alfaaz.foundation.blog.models.UserLoginResponse;
+import in.alfaaz.foundation.blog.models.UserRegisterRequest;
+import in.alfaaz.foundation.blog.models.UserSettingsDto;
 import in.alfaaz.foundation.blog.services.UserDataService;
 import in.alfaaz.foundation.blog.utils.JwtTokenUtils;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,10 +42,11 @@ public class AdminController {
     }
 
     @PostMapping(value = "/public/admins")
-    public ResponseEntity<String> addAdmin(@RequestBody UserDto admin){
+    public ResponseEntity<String> addAdmin(@RequestBody @Valid UserRegisterRequest admin){
         try{
             return new ResponseEntity<String>(userDataService.saveAdmin(admin).toString(),HttpStatus.OK);
         }catch (Exception e){
+            e.printStackTrace();
             return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -67,7 +70,16 @@ public class AdminController {
         return ResponseEntity.ok(response);
     }
 
-    private UserDto convertToDto(UserEntity userEntity){
-        return modelMapper.map(userEntity,UserDto.class);
+    @PostMapping(value = "/admins/settings")
+    public ResponseEntity<String> updateSettings(@RequestBody UserSettingsDto userSettingsDto, @RequestHeader (name="Authorization") String tokenHeader){
+        try{
+            String username = jwtTokenUtil.getUsernameFromHeader(tokenHeader);
+            userSettingsDto.setUsername(username);
+            return new ResponseEntity<String>(userDataService.updateAdminSettings(userSettingsDto),HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
+
 }
