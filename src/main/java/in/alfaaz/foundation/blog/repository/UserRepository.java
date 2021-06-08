@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
@@ -13,6 +14,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     @Query(value = "select * from alf_user users,alf_role roles where roles.ROLE_NAME = 'ADMIN' ", nativeQuery = true)
     public List<UserEntity> getAdmins();
 
-
     public UserEntity findByEmail(String email);
+
+    public UserEntity findById(UUID id);
+
+    @Query("update UserEntity u set u.firstName = :firstName,u.lastName=:lastName,u.facebook=:facebook,u.instagram=:instagram,u.youtube=:youtube,u.twitter=:twitter WHERE u.email = :username")
+    void updateAdminSettings(String username, String firstName,String lastName, String facebook, String instagram, String youtube, String twitter);
 }
