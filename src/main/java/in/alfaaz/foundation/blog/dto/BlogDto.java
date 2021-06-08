@@ -12,17 +12,15 @@ import java.sql.Date;
 @Setter
 @ToString
 public class BlogDto {
-    @JsonIgnore
     private Long id;
 
     private String title;
 
     private String content;
 
-    @JsonIgnore
+
     private Date publishedOn;
 
-    @JsonIgnore
     private String publishedBy;
 
     private BlogStatus blogStatus;
