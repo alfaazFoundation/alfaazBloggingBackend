@@ -36,7 +36,7 @@ public class AdminController {
     @Autowired
     private JwtTokenUtils jwtTokenUtil;
 
-    @GetMapping(value = "/admins",produces = "application/json")
+    @GetMapping(value = "/public/admins",produces = "application/json")
     public List<UserDto> getAdmins(){
         return userDataService.getAdmins().stream()
                 .map(userEntity -> modelMapper.map(userEntity,UserDto.class))

@@ -43,6 +43,6 @@ public class BlogEntity {
     @UpdateTimestamp
     private Date lastUpdated;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserEntity user;
 }

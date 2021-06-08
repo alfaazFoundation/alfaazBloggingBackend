@@ -1,5 +1,6 @@
 package in.alfaaz.foundation.blog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
