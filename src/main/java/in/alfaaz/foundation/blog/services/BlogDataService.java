@@ -43,7 +43,8 @@ public class BlogDataService {
 
     public List<BlogEntity> findBlogByUser(String username){
         UserEntity userEntity = userRepository.findByEmail(username);
-        return blogRepository.findAllByUser(userEntity);
+        //List<BlogEntity> blogEntities = userEntity.getBlogEntities();
+        return blogRepository.findAllByUser(userEntity.getId());
 
     }
 }

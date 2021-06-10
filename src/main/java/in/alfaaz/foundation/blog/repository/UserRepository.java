@@ -8,17 +8,18 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     @Query(value = "select * from alf_user users,alf_role roles where roles.ROLE_NAME = 'ADMIN' ", nativeQuery = true)
     public List<UserEntity> getAdmins();
 
     public UserEntity findByEmail(String email);
 
-    public UserEntity findById(UUID id);
+    public Optional<UserEntity> findById(UUID id);
 
     @Transactional
     @Modifying

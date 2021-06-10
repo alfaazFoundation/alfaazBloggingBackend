@@ -3,6 +3,7 @@ package in.alfaaz.foundation.blog.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class UserEntity {
 
     @Id
+    @Type(type="uuid-char")
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
             name = "UUID",
@@ -57,5 +59,5 @@ public class UserEntity {
     @OneToMany(fetch = FetchType.LAZY,
     cascade = CascadeType.ALL, orphanRemoval = true,
     mappedBy = "user")
-    private List<BlogEntity> blogEntities = new ArrayList<>();
+    private List<BlogEntity> blogEntities;
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -69,8 +70,9 @@ public class UserDataService implements UserDetailsService {
     }
 
     public UserDetails loadUserByUserId(String userId) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findById(UUID.fromString(userId));
-        if(userEntity !=null){
+        Optional<UserEntity> optional = userRepository.findById(UUID.fromString(userId));
+        if(optional.isPresent()){
+            UserEntity userEntity = optional.get();
             return new User(userEntity.getEmail(),userEntity.getPassword(), Collections.emptyList());
         }
         else {

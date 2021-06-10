@@ -44,5 +44,6 @@ public class BlogEntity {
     private Date lastUpdated;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 }
