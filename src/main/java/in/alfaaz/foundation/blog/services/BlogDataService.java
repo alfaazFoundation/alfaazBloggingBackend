@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,6 +32,8 @@ public class BlogDataService {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserEntity userEntity = userRepository.findByEmail(userDetails.getUsername());
         BlogEntity blogEntity = new BlogEntity();
+        if(Objects.nonNull(blogDto.getId()))
+            blogEntity.setId(blogDto.getId());
         blogEntity.setTitle(blogDto.getTitle());
         blogEntity.setContent(blogDto.getContent());
         String publishedBy = userEntity.getFirstName() + " " + userEntity.getLastName();

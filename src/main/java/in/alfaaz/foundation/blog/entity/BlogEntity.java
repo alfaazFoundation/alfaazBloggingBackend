@@ -14,7 +14,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class BlogEntity {
 
     @Id
@@ -31,7 +30,7 @@ public class BlogEntity {
     @Column(name = "PUBLISHED_BY")
     private String publishedBy;
 
-    @Column(name = "PUBLISHED_ON")
+    @Column(name = "PUBLISHED_ON", nullable = false, updatable = false)
     @CreationTimestamp
     private Date publishedOn;
 
@@ -46,4 +45,17 @@ public class BlogEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @Override
+    public String toString() {
+        return "BlogEntity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", publishedBy='" + publishedBy + '\'' +
+                ", publishedOn=" + publishedOn +
+                ", blogStatus=" + blogStatus +
+                ", lastUpdated=" + lastUpdated +
+                '}';
+    }
 }
