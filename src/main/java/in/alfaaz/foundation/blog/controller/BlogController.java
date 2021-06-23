@@ -1,7 +1,9 @@
 package in.alfaaz.foundation.blog.controller;
 
 import in.alfaaz.foundation.blog.dto.BlogDto;
+import in.alfaaz.foundation.blog.entity.UserEntity;
 import in.alfaaz.foundation.blog.services.BlogDataService;
+import in.alfaaz.foundation.blog.services.UserDataService;
 import in.alfaaz.foundation.blog.utils.JwtTokenUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class BlogController {
     @Autowired
     ModelMapper modelMapper;
 
+    @Autowired
+    private UserDataService userDataService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/blog")
     public List<BlogDto> getAllBlogs(){
         return blogDataService.findAll()
@@ -38,9 +43,12 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET, value = "/blog/user")
     public List<BlogDto> getAllBlogsByUser(){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            return blogDataService.findBlogByUser(userDetails.getUsername())
-                    .stream()
-                    .map(blogEntity -> modelMapper.map(blogEntity, BlogDto.class))
-                    .collect(Collectors.toList());
+            return blogDataService.findBlogByUser(userDetails.getUsername());
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/publishedBlogs")
+    public List<BlogDto> getPublishedBlogs(){
+      return blogDataService.getPublsihedBlogs();
+    }
+
 }
